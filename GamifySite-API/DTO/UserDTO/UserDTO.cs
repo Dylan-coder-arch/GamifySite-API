@@ -1,19 +1,19 @@
-﻿namespace GamifySite_API.Models
-{
-    public class User
-    {
+﻿using GamifySite_API.Models;
 
+namespace GamifySite_API.DTO.UserDTO
+{
+    public class UserDTO
+    {
         public Guid UserID { get; set; }
         public string FirstName { get; set; } = string.Empty;
         public string LastName { get; set; } = string.Empty;
         public string Email { get; set; } = string.Empty;
         public string Password { get; set; } = string.Empty;
         public string PhoneNo { get; set; } = string.Empty;
-        public string Role { get; set; } = string.Empty;
-        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public string Role { get; set; } = "user";
+        public DateTime CreatedAt { get; set; }
 
         public ICollection<Rating>? Ratings { get; set; }
-        // public ICollection<Participant> Participants { get; set; }
 
 
     }

@@ -1,4 +1,7 @@
 using GamifySite_API.DBContext;
+using GamifySite_API.Interfaces;
+using GamifySite_API.Repository.UserRepo;
+using GamifySite_API.Repository.VendorRepo;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,6 +19,18 @@ builder.Services.AddDbContext<ApplicationDBContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", policy =>
+    {
+        policy.AllowAnyOrigin() // Allow requests from any IP or origin
+              .AllowAnyMethod() // Allow any HTTP method (GET, POST, PUT, etc.)
+              .AllowAnyHeader(); // Allow any headers
+    });
+});
+
+builder.Services.AddScoped<IUserRepository, UserRepo>();
+builder.Services.AddScoped<IVendorRepository, VendorRepo>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -26,6 +41,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors("AllowAll");
 
 app.UseAuthorization();
 
