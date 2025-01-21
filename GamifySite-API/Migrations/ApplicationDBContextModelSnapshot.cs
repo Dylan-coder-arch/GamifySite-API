@@ -31,18 +31,15 @@ namespace GamifySite_API.Migrations
                     b.Property<decimal>("Amount")
                         .HasColumnType("numeric");
 
-                    b.Property<Guid>("PaidBy")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("PayerUserID")
-                        .HasColumnType("uuid");
-
                     b.Property<DateTime>("PaymentTime")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<Guid>("UserID")
+                        .HasColumnType("uuid");
+
                     b.HasKey("PaymentID");
 
-                    b.HasIndex("PayerUserID");
+                    b.HasIndex("UserID");
 
                     b.ToTable("Payments");
                 });
@@ -225,10 +222,10 @@ namespace GamifySite_API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<Guid>("AddressID")
+                    b.Property<Guid>("UserID")
                         .HasColumnType("uuid");
 
-                    b.Property<Guid>("ContactID")
+                    b.Property<Guid>("VendorAddressID")
                         .HasColumnType("uuid");
 
                     b.Property<Guid>("VendorCategoryID")
@@ -243,6 +240,10 @@ namespace GamifySite_API.Migrations
                         .HasColumnType("text");
 
                     b.HasKey("VendorID");
+
+                    b.HasIndex("UserID");
+
+                    b.HasIndex("VendorAddressID");
 
                     b.ToTable("Vendors");
                 });
@@ -345,9 +346,6 @@ namespace GamifySite_API.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<Guid>("VoucherVendor")
-                        .HasColumnType("uuid");
-
                     b.HasKey("VoucherID");
 
                     b.HasIndex("VendorID");
@@ -367,7 +365,7 @@ namespace GamifySite_API.Migrations
                     b.Property<DateTime?>("ClaimedTime")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<Guid>("ClaimedUserUserID")
+                    b.Property<Guid?>("ClaimedUserUserID")
                         .HasColumnType("uuid");
 
                     b.Property<string>("VoucherCode")
@@ -394,7 +392,7 @@ namespace GamifySite_API.Migrations
                 {
                     b.HasOne("GamifySite_API.Models.User", "Payer")
                         .WithMany()
-                        .HasForeignKey("PayerUserID")
+                        .HasForeignKey("UserID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -477,6 +475,25 @@ namespace GamifySite_API.Migrations
                     b.Navigation("Voucher");
                 });
 
+            modelBuilder.Entity("GamifySite_API.Models.Vendor", b =>
+                {
+                    b.HasOne("GamifySite_API.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("GamifySite_API.Models.VendorAddress", "Address")
+                        .WithMany()
+                        .HasForeignKey("VendorAddressID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Address");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("GamifySite_API.Models.Voucher", b =>
                 {
                     b.HasOne("GamifySite_API.Models.Vendor", "Vendor")
@@ -492,9 +509,7 @@ namespace GamifySite_API.Migrations
                 {
                     b.HasOne("GamifySite_API.Models.User", "ClaimedUser")
                         .WithMany()
-                        .HasForeignKey("ClaimedUserUserID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ClaimedUserUserID");
 
                     b.HasOne("GamifySite_API.Models.Voucher", "Voucher")
                         .WithMany()

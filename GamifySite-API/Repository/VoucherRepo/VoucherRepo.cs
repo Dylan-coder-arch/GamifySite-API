@@ -33,28 +33,20 @@ namespace GamifySite_API.Repository.VoucherRepo
             return voucherModel;
         }
 
-        public Task<bool> Exists(Guid id)
+        public Task<bool> VoucherExists(Guid id)
         {
-            throw new NotImplementedException();
+            return _dbContext.Vouchers.AnyAsync(s => s.VoucherID == id);
         }
 
         public async Task<List<Voucher>> GetAllAsync()
         {
-            return await _dbContext.Vouchers.ToListAsync();
+            return await _dbContext.Vouchers.Include(r => r.Ratings).ToListAsync();
         }
 
-        //public async Task<List<Voucher>> GetAllAsync(Guid vendorID)
-        //{
-        //    // this will return all the vouchers for a specific vendor 
-        //    // but we also want to return all vouchers 
-        //    return await _dbContext.Vouchers.Where(v => v.VoucherVendor == vendorID).ToListAsync();
-        //}
-
         
-
         public async Task<Voucher?> GetByIDAsync(Guid id)
         {
-            return await _dbContext.Vouchers.FirstOrDefaultAsync(x => x.VoucherID == id);
+            return await _dbContext.Vouchers.Include(r => r.Ratings).FirstOrDefaultAsync(x => x.VoucherID == id);
         }
 
         public async Task<Voucher?> UpdateAsync(Guid id, UpdateVoucherRequestDTO updateReq)

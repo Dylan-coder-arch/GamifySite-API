@@ -10,6 +10,5 @@ namespace GamifySite_API.DTO.UserDTO
         public string PhoneNo { get; set; } = string.Empty;
         public string Role { get; set; } = string.Empty;
 
-
     }
 }

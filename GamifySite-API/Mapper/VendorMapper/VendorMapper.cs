@@ -14,8 +14,8 @@ namespace GamifySite_API.Mapper.VendorMapper
                 VendorName = vendorModel.VendorName,
                 VendorCategoryID = vendorModel.VendorCategoryID,
                 VendorStatus = vendorModel.VendorStatus,
-                AddressID = vendorModel.AddressID,
-                ContactID = vendorModel.ContactID,
+                VendorAddressID = vendorModel.VendorAddressID,
+                UserID = vendorModel.UserID,
                 Vouchers = vendorModel.Vouchers,
             };
         }
@@ -27,8 +27,8 @@ namespace GamifySite_API.Mapper.VendorMapper
                 VendorName = vendorModel.VendorName,
                 VendorStatus = "active",
                 VendorCategoryID = vendorModel.VendorCategoryID,
-                AddressID = vendorModel.AddressID,
-                ContactID = vendorModel.ContactID,
+                VendorAddressID = vendorModel.VendorAddressID,
+                UserID = vendorModel.UserID,
                 Vouchers = null
             };
 

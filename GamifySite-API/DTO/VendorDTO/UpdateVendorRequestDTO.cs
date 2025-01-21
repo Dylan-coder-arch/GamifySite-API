@@ -8,12 +8,12 @@ namespace GamifySite_API.DTO.VendorDTO
         [Required]
         [MaxLength(500, ErrorMessage = "Vendor name too long (cannot exceed 500 characters)")]
         public string VendorName { get; set; } = string.Empty;
-        [Required]
+        
         public Guid VendorCategoryID { get; set; }
         [Required]
-        public Guid ContactID { get; set; }
+        public Guid UserID { get; set; }
         [Required]
-        public Guid AddressID { get; set; } 
+        public Guid VendorAddressID { get; set; } 
         public string VendorStatus { get; set; } = string.Empty;
 
 

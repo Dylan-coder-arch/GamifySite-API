@@ -14,7 +14,7 @@ namespace GamifySite_API.Interfaces
         Task<Voucher?> UpdateAsync(Guid id, UpdateVoucherRequestDTO updateReq);
         Task<Voucher?> DeleteAsync(Guid id);
 
-        Task<bool> Exists(Guid id);
+        Task<bool> VoucherExists(Guid id);
 
         // need to be able to get the voucher by vendorID as well/vendor name maybe ? 
 

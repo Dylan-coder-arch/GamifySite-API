@@ -1,4 +1,5 @@
 ﻿using GamifySite_API.DTO.UserDTO;
+using GamifySite_API.Mapper.RatingMapper;
 using GamifySite_API.Models;
 
 namespace GamifySite_API.Mapper.UserMapper
@@ -17,7 +18,7 @@ namespace GamifySite_API.Mapper.UserMapper
                 Password = userModel.Password,
                 PhoneNo = userModel.PhoneNo,
                 CreatedAt = userModel.CreatedAt,
-                Ratings = userModel.Ratings,
+                Ratings = userModel.Ratings.Select(r => r.ToRatingDto()).ToList(),
             };
         }
 

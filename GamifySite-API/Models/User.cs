@@ -1,4 +1,6 @@
-﻿namespace GamifySite_API.Models
+﻿using GamifySite_API.DTO.RatingDTO;
+
+namespace GamifySite_API.Models
 {
     public class User
     {
@@ -12,7 +14,7 @@
         public string Role { get; set; } = string.Empty;
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
-        public ICollection<Rating>? Ratings { get; set; }
+        public List<Rating> Ratings { get; set; } = new List<Rating>();
         // public ICollection<Participant> Participants { get; set; }
 
 

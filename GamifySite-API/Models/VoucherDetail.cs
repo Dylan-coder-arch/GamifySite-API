@@ -6,10 +6,10 @@
         public string VoucherCode { get; set; } = string.Empty;
         public string VoucherCodeStatus { get; set; } = string.Empty;
         public Guid VoucherID { get; set; }
-        public Guid? ClaimedBy { get; set; }
+        public Guid? UserID { get; set; }
         public DateTime? ClaimedTime { get; set; }
 
-        public User ClaimedUser { get; set; }
+        public User? ClaimedUser { get; set; }
         public Voucher Voucher { get; set; }
     }
 }

@@ -29,15 +29,25 @@ namespace GamifySite_API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<User>>> GetUsers()
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
             var users = await _userRepo.GetAllAsync();
             var userDTO = users.Select(s => s.ToUserDto()).ToList();
             return Ok(userDTO);
         }
 
         // GET: api/Users/5
-        [HttpGet("{id}")]
+        [HttpGet("{id:guid}")]
         public async Task<ActionResult<User>> GetUser(Guid id)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
             var user = await _userRepo.GetByIDAsync(id);
 
             if (user == null)
@@ -50,10 +60,15 @@ namespace GamifySite_API.Controllers
 
         // PUT: api/Users/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
+        [HttpPut("{id:guid}")]
         public async Task<IActionResult> PutUser([FromRoute] Guid id, [FromBody] UpdateUserRequestDTO user)
         {
-           var userModel = await _userRepo.UpdateAsync(id, user);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var userModel = await _userRepo.UpdateAsync(id, user);
             if (userModel == null)
             {
                 return NotFound();
@@ -68,7 +83,11 @@ namespace GamifySite_API.Controllers
         [HttpPost]
         public async Task<ActionResult<User>> PostUser([FromBody] CreateUserRequestDTO user)
         {
-            // in here you need to take in the 
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            
             var userModel = user.ToUserFromCreateDto();
 
             await _userRepo.CreateAsync(userModel);
@@ -77,9 +96,13 @@ namespace GamifySite_API.Controllers
         }
 
         // DELETE: api/Users/5
-        [HttpDelete("{id}")]
+        [HttpDelete("{id:guid}")]
         public async Task<IActionResult> DeleteUser(Guid id)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             var userModel = await _userRepo.DeleteAsync(id);
             if (userModel == null)
             {

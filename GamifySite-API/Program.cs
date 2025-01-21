@@ -2,7 +2,11 @@ using GamifySite_API.DBContext;
 using GamifySite_API.Interfaces;
 using GamifySite_API.Repository.UserRepo;
 using GamifySite_API.Repository.VendorRepo;
+using GamifySite_API.Repository.VoucherRepo;
+using GamifySite_API.Repository.RatingRepo;
 using Microsoft.EntityFrameworkCore;
+using GamifySite_API.Repository.SpinRepo;
+using GamifySite_API.Repository.SpinPrizeRepo;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,8 +33,18 @@ builder.Services.AddCors(options =>
     });
 });
 
+builder.Services.AddControllers().AddNewtonsoftJson(options =>
+{
+    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+});
+
 builder.Services.AddScoped<IUserRepository, UserRepo>();
 builder.Services.AddScoped<IVendorRepository, VendorRepo>();
+builder.Services.AddScoped<IVoucherRepository, VoucherRepo>();
+builder.Services.AddScoped<IRatingRepository, RatingRepo>();
+builder.Services.AddScoped<ISpinRepositry, SpinRepo>();
+builder.Services.AddScoped<ISpinPrizeRepository, SpinPrizeRepo>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

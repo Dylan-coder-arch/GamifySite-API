@@ -25,7 +25,7 @@ namespace GamifySite_API.Mapper.VoucherMapper
                 VoucherName = voucherModel.VoucherName,
                 VoucherStatus = voucherModel.VoucherStatus,
                 VoucherType = voucherModel.VoucherType,
-                VoucherVendor = voucherModel.VoucherVendor,
+                VendorID = voucherModel.VendorID,
             };
         }
 
@@ -36,7 +36,7 @@ namespace GamifySite_API.Mapper.VoucherMapper
                 VoucherName = requestDTO.VoucherName,
                 VoucherStatus = requestDTO.VoucherStatus,
                 VoucherType = requestDTO.VoucherType,
-                VoucherVendor = requestDTO.VoucherVendor,
+                VendorID = requestDTO.VendorID,
                 VoucherAmount = requestDTO.VoucherAmount,
                 VoucherExpiry = requestDTO.VoucherExpiry,
                 VoucherLocation = requestDTO.VoucherLocation,

@@ -1,4 +1,5 @@
-﻿using GamifySite_API.Models;
+﻿using GamifySite_API.DTO.RatingDTO;
+using GamifySite_API.Models;
 
 namespace GamifySite_API.DTO.UserDTO
 {
@@ -11,9 +12,9 @@ namespace GamifySite_API.DTO.UserDTO
         public string Password { get; set; } = string.Empty;
         public string PhoneNo { get; set; } = string.Empty;
         public string Role { get; set; } = "user";
-        public DateTime CreatedAt { get; set; }
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
-        public ICollection<Rating>? Ratings { get; set; }
+        public ICollection<RatingDto>? Ratings { get; set; }
 
 
     }

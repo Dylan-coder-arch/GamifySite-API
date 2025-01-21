@@ -18,6 +18,7 @@ namespace GamifySite_API.Repository.VendorRepo
 
         public async Task<Vendor> CreateAsync(Vendor vendorModel)
         {
+            // parent ID of userID?
             await _dbContext.Vendors.AddAsync(vendorModel);
             await _dbContext.SaveChangesAsync();
             return vendorModel;
@@ -50,7 +51,7 @@ namespace GamifySite_API.Repository.VendorRepo
 
         public async Task<Vendor?> GetByIDAsync(Guid id)
         {
-            return await _dbContext.Vendors.FirstOrDefaultAsync(x => x.VendorID == id);
+            return await _dbContext.Vendors.Include(va => va.Address).FirstOrDefaultAsync(x => x.VendorID == id);
         }
 
         public async Task<Vendor?> UpdateAsync(Guid id, UpdateVendorRequestDTO updateReq)
@@ -62,9 +63,9 @@ namespace GamifySite_API.Repository.VendorRepo
             }
 
             vendorModel.VendorName = updateReq.VendorName;
-            vendorModel.AddressID = updateReq.AddressID;
+            vendorModel.VendorAddressID = updateReq.VendorAddressID;
             vendorModel.VendorCategoryID = updateReq.VendorCategoryID;
-            vendorModel.ContactID = updateReq.ContactID;
+            vendorModel.UserID = updateReq.UserID;
             vendorModel.VendorStatus = updateReq.VendorStatus;
             await _dbContext.SaveChangesAsync();
             return vendorModel;

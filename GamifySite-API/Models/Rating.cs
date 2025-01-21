@@ -6,7 +6,7 @@
         public Guid VoucherID { get; set; }
         public Guid UserID { get; set; }
         public decimal RatingValue { get; set; }
-        public string Comment { get; set; }
+        public string Comment { get; set; } = string.Empty;
 
         public User User { get; set; }
         public Voucher Voucher { get; set; }

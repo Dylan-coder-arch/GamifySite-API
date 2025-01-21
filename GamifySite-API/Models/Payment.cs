@@ -3,7 +3,7 @@
     public class Payment
     {
         public Guid PaymentID { get; set; }
-        public Guid PaidBy { get; set; }
+        public Guid UserID { get; set; }
         public decimal Amount { get; set; }
         public DateTime PaymentTime { get; set; }
 

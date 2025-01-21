@@ -35,17 +35,17 @@ namespace GamifySite_API.Repository.UserRepo
 
         public async Task<List<User>> GetAllAsync()
         {
-            return await _dbContext.Users.ToListAsync();
+            return await _dbContext.Users.Include(r => r.Ratings).ToListAsync();
         }
 
         public async Task<User?> GetByEmailAsync(string email)
         {
-            return await _dbContext.Users.FirstOrDefaultAsync(x => x.Email.ToUpper() == email.ToUpper());
+            return await _dbContext.Users.Include(r => r.Ratings).FirstOrDefaultAsync(x => x.Email.ToUpper() == email.ToUpper());
         }
 
         public async Task<User?> GetByIDAsync(Guid id)
         {
-            return await _dbContext.Users.FirstOrDefaultAsync(x => x.UserID == id);
+            return await _dbContext.Users.Include(r => r.Ratings).FirstOrDefaultAsync(x => x.UserID == id);
         }
 
         public async Task<User?> UpdateAsync(Guid id, UpdateUserRequestDTO updateReq)
@@ -60,7 +60,7 @@ namespace GamifySite_API.Repository.UserRepo
             userModel.Email = updateReq.Email;
             userModel.FirstName = updateReq.FirstName;
             userModel.LastName = updateReq.LastName;
-
+            userModel.Role = updateReq.Role;
 
             await _dbContext.SaveChangesAsync();
             return userModel;

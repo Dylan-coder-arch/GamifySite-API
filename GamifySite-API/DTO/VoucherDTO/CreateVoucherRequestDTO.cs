@@ -5,7 +5,7 @@
 
         public string VoucherName { get; set; } = string.Empty;
         public string VoucherType { get; set; } = string.Empty;
-        public Guid VoucherVendor { get; set; }
+        public Guid VendorID { get; set; }
         public decimal VoucherAmount { get; set; } // % disc, monetary disc? 
         public DateTime VoucherExpiry { get; set; }
         public string VoucherStatus { get; set; } = string.Empty;
