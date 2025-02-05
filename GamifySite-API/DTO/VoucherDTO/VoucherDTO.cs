@@ -2,7 +2,7 @@
 
 namespace GamifySite_API.DTO.VoucherDTO
 {
-    public class VoucherDTO
+    public class VoucherDto
     {   
         public Guid VoucherID { get; set; }
         public string VoucherName { get; set; } = string.Empty;
@@ -21,6 +21,7 @@ namespace GamifySite_API.DTO.VoucherDTO
         public bool Special3 { get; set; }
 
         public ICollection<Rating>? Ratings { get; set; }
+
 
     }
 }

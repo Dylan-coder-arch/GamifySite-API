@@ -6,9 +6,9 @@ namespace GamifySite_API.Mapper.VoucherMapper
     public static class VoucherMapper
     {
 
-        public static VoucherDTO ToVoucherDTO(this Voucher voucherModel)
+        public static VoucherDto ToVoucherDTO(this Voucher voucherModel)
         {
-            return new VoucherDTO
+            return new VoucherDto
             {
                 VoucherID = voucherModel.VoucherID,
                 DateCreated = voucherModel.DateCreated,

@@ -17,7 +17,6 @@ namespace GamifySite_API.Mapper.VendorAddressMapper
                 State = vendAddressModel.State,
                 StreetAddress = vendAddressModel.StreetAddress,
                 VendorAddressID = vendAddressModel.VendorAddressID,
-                
             };
         }
 
@@ -25,12 +24,12 @@ namespace GamifySite_API.Mapper.VendorAddressMapper
         {
             return new VendorAddress
             {
+                VendorAddressID = Guid.NewGuid(),
                 City = vendorAddressCreateModel.City,
                 Country = vendorAddressCreateModel.Country,
                 PostalCode= vendorAddressCreateModel.PostalCode,
                 State = vendorAddressCreateModel.State,
                 StreetAddress= vendorAddressCreateModel.StreetAddress,
-
             };
         }
 

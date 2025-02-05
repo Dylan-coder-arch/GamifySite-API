@@ -1,4 +1,5 @@
-﻿using GamifySite_API.Models;
+﻿using GamifySite_API.DTO.VoucherDTO;
+using GamifySite_API.Models;
 
 namespace GamifySite_API.DTO.VendorDTO
 {
@@ -12,7 +13,7 @@ namespace GamifySite_API.DTO.VendorDTO
         public Guid VendorAddressID { get; set; }
         public string VendorStatus { get; set; } = string.Empty;
 
-        public ICollection<Voucher>? Vouchers { get; set; }
+        public ICollection<VoucherDto>? Vouchers { get; set; } = new List<VoucherDto>();
 
     }
 }

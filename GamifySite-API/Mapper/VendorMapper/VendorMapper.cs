@@ -1,4 +1,5 @@
 ﻿using GamifySite_API.DTO.VendorDTO;
+using GamifySite_API.Mapper.VoucherMapper;
 using GamifySite_API.Models;
 
 namespace GamifySite_API.Mapper.VendorMapper
@@ -16,7 +17,7 @@ namespace GamifySite_API.Mapper.VendorMapper
                 VendorStatus = vendorModel.VendorStatus,
                 VendorAddressID = vendorModel.VendorAddressID,
                 UserID = vendorModel.UserID,
-                Vouchers = vendorModel.Vouchers,
+                Vouchers = vendorModel.Vouchers.Select(v => v.ToVoucherDTO()).ToList(),
             };
         }
 

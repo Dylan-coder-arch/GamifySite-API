@@ -21,7 +21,7 @@
 
         public Vendor Vendor { get; set; }
         public ICollection<Rating> Ratings { get; set; } = new List<Rating>();
-       // public ICollection<RafflePrize> RafflePrizes { get; set; }
+        // public ICollection<RafflePrize> RafflePrizes { get; set; }
 
     }
 }
