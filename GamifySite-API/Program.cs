@@ -10,6 +10,7 @@ using GamifySite_API.Repository.SpinPrizeRepo;
 using GamifySite_API.Repository.VoucherDetailRepo;
 using GamifySite_API.Repository.VendorAddrRepo;
 using GamifySite_API.Repository.VendorCategoryRepo;
+using GamifySite_API.Repository.TagDefRepo;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -48,7 +49,7 @@ builder.Services.AddScoped<IRatingRepository, RatingRepo>();
 builder.Services.AddScoped<ISpinRepositry, SpinRepo>();
 builder.Services.AddScoped<ISpinPrizeRepository, SpinPrizeRepo>();
 builder.Services.AddScoped<IVoucherDetailRepository, VoucherDetailRepo>();
-
+builder.Services.AddScoped<ITagDefRepository, TagDefRepo>();
 builder.Services.AddScoped<IVendorAddressRepository, VendorAddressRepo>();
 builder.Services.AddScoped<IVendorCategoryRepository, VendorCategoryRepo>();
 

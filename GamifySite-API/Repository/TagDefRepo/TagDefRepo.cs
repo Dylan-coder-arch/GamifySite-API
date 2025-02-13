@@ -47,10 +47,18 @@ namespace GamifySite_API.Repository.TagDefRepo
             return searchTag;
         }
 
-        // need to work on update
-        public Task<TagDef?> UpdateTagAsync(Guid id, TagDef tagDef)
+        
+        public async Task<TagDef?> UpdateTagAsync(Guid id, TagDef tagDef)
         {
-            throw new NotImplementedException();
+            var searchTag = await _dbContext.TagsDef.FindAsync(id);
+            if (searchTag == null)
+            {
+                return null;
+            }
+            searchTag.TagColor = tagDef.TagColor;
+            searchTag.TagName = tagDef.TagName;
+            await _dbContext.SaveChangesAsync();
+            return searchTag;
         }
     }
 }
