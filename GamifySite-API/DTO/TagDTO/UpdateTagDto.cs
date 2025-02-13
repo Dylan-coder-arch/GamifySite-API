@@ -2,8 +2,6 @@
 {
     public class UpdateTagDto
     {
-
-        public Guid VoucherID { get; set; }
         public Guid TagDefID { get; set; }
 
     }

@@ -1,4 +1,6 @@
-﻿using GamifySite_API.Models;
+﻿using GamifySite_API.DTO.RatingDTO;
+using GamifySite_API.DTO.TagDTO;
+using GamifySite_API.Models;
 
 namespace GamifySite_API.DTO.VoucherDTO
 {
@@ -20,8 +22,8 @@ namespace GamifySite_API.DTO.VoucherDTO
         public bool Special2 { get; set; }
         public bool Special3 { get; set; }
 
-        public ICollection<Rating>? Ratings { get; set; }
+        public ICollection<RatingDto>? Ratings { get; set; }
 
-
+        public ICollection<TagDto>? Tags { get; set; }
     }
 }

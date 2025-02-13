@@ -46,7 +46,7 @@ namespace GamifySite_API.Repository.VoucherRepo
         
         public async Task<Voucher?> GetByIDAsync(Guid id)
         {
-            return await _dbContext.Vouchers.Include(r => r.Ratings).FirstOrDefaultAsync(x => x.VoucherID == id);
+            return await _dbContext.Vouchers.Include(r => r.Ratings).Include(t => t.Tags).FirstOrDefaultAsync(x => x.VoucherID == id);
         }
 
         public async Task<Voucher?> UpdateAsync(Guid id, UpdateVoucherRequestDTO updateReq)

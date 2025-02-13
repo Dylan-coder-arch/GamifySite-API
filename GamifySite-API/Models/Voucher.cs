@@ -1,4 +1,6 @@
-﻿namespace GamifySite_API.Models
+﻿using GamifySite_API.DTO.RatingDTO;
+
+namespace GamifySite_API.Models
 {
     public class Voucher
     {
@@ -21,6 +23,7 @@
 
         public Vendor Vendor { get; set; }
         public ICollection<Rating> Ratings { get; set; } = new List<Rating>();
+        public ICollection<Tag> Tags { get; set; } = new List<Tag>();
         // public ICollection<RafflePrize> RafflePrizes { get; set; }
 
     }

@@ -6,12 +6,13 @@ namespace GamifySite_API.Interfaces
     {
         // need to edit this and think about it
         // making the api for a blended table is a little tricky 
-        Task<List<Tag>> GetAll();
-        Task<Tag?> GetByVoucherID(Guid vouchID);
-        Task<List<Voucher>> GetAllByTagDef(Guid tagDefID);
-        Task<Tag> CreateTag(Guid voucherID, Guid tagDefID);
-        Task<Tag?> UpdateTag(Guid tagID);
-        Task<Tag?> DeleteTag(Guid tagID);
-        Task<Tag?> TagAlreadyAdded(Guid voucherID, Guid tagDefID);
+        Task<List<Tag>> GetAllAsync();
+        Task<Tag?> GetByIdAsync(Guid tagID);
+        //Task<Tag?> GetByVoucherID(Guid vouchID);
+        //Task<List<Voucher>> GetAllByTagDef(Guid tagDefID);
+        Task<Tag> AddTagAsync(Tag tagItem);
+        Task<Tag?> UpdateTagAsync(Guid tagID, Tag tagUpdate);
+        Task<Tag?> DeleteTagAsync(Guid tagID);
+        Task<Tag?> TagAlreadyAddedAsync(Guid voucherID, Guid tagDefID);
     }
 }

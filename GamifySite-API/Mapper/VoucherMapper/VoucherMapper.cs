@@ -1,4 +1,6 @@
 ﻿using GamifySite_API.DTO.VoucherDTO;
+using GamifySite_API.Mapper.RatingMapper;
+using GamifySite_API.Mapper.TagMapper;
 using GamifySite_API.Models;
 
 namespace GamifySite_API.Mapper.VoucherMapper
@@ -13,7 +15,7 @@ namespace GamifySite_API.Mapper.VoucherMapper
                 VoucherID = voucherModel.VoucherID,
                 DateCreated = voucherModel.DateCreated,
                 DateModified = voucherModel.DateModified,
-                Ratings = voucherModel.Ratings,
+                Ratings = voucherModel.Ratings.Select(r => r.ToRatingDto()).ToList(),
                 Special1 = voucherModel.Special1,
                 Special2 = voucherModel.Special2,
                 Special3 = voucherModel.Special3,
@@ -26,6 +28,7 @@ namespace GamifySite_API.Mapper.VoucherMapper
                 VoucherStatus = voucherModel.VoucherStatus,
                 VoucherType = voucherModel.VoucherType,
                 VendorID = voucherModel.VendorID,
+                Tags = voucherModel.Tags.Select(t => t.ToTagDto()).ToList(),
             };
         }
 
